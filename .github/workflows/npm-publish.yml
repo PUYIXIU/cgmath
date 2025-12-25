@@ -39,7 +39,7 @@ jobs:
         run: npm version patch # 自动修改版本号
         
       - name: Publish to npm
-        run: npm publish
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
