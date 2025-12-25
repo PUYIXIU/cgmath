@@ -42,6 +42,8 @@ jobs:
         run: npm version patch --no-git-tag-version # 自动修改版本号
         
       - name: Commit changes # 更新版本号的修改
+        with:
+          github_token: ${{ secrets.COMMIT_TOKEN }}
         run: |
           git add .
           git commit -m "Bump version" || echo "No changes to commit"
