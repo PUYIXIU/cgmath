@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "1597167270@qq.com"
 
       - name: Bump version (optional)
-        run: npm version patch # 自动修改版本号
+        run: npm version patch --no-git-tag-version # 自动修改版本号
         
       - name: Commit changes # 更新版本号的修改
         run: |
