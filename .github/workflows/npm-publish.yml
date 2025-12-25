@@ -23,24 +23,15 @@ jobs:
       - name: Bump version (optional)
         run: npm version patch # 自动修改版本号
         
-      - name: Publish to npm
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Publish to npm
+      #   run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-npm:
     needs: build
     runs-on: windows-latest
     steps:
-      - name: npm install
-        run: npm install
-
-      - name: Rollup build
-        run: npm run build
-
-      - name: Bump version (optional)
-        run: npm version patch # 自动修改版本号
-        
       - name: Publish to npm
         run: npm publish
         env:
