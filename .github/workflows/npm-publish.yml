@@ -41,6 +41,12 @@ jobs:
       - name: Bump version (optional)
         run: npm version patch # 自动修改版本号
         
+      - name: Commit changes # 更新版本号的修改
+        run: |
+          git add .
+          git commit -m "Bump version" || echo "No changes to commit"
+          git push origin main
+
       - name: Publish to npm
         run: npm publish --provenance --access public
         env:
