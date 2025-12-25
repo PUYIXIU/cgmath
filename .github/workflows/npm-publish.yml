@@ -26,7 +26,12 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+          
+      - name: Commit & Push changes
+        uses: actions-js/push@v1.4
+        with:
           github_token: ${{ secrets.COMMIT_TOKEN }}
+
 
       - name: npm install
         run: npm install
