@@ -18,6 +18,12 @@ jobs:
         with:
             sparse-checkout: .
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
       - name: npm install
         run: npm install
 
