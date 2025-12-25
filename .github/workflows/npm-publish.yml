@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
@@ -33,42 +33,42 @@ jobs:
       - name: Rollup build
         run: npm run build
 
-      #- name: Set up Git user
-      #  run: |
-      #    git config --global user.name "piuyixiu"
-      #    git config --global user.email "1597167270@qq.com"
-#
-      #- name: Bump version (optional)
-      #  run: npm version patch --no-git-tag-version # 自动修改版本号
-        
-      #- name: Commit & Push changes
-      #  uses: actions-js/push@v1.4
-      #  with:
-      #    github_token: ${{ secrets.GITHUB_TOKEN }}
-      #    message: "Bump version"
-      #    author_email: '1597167270@qq.com'
-      #    author_name: 'piuyixiu'
-      #- name: Commit changes # 更新版本号的修改
-      #  run: |
-      #    git add .
-      #    git commit -m "Bump version" || echo "No changes to commit"
-      #    git push origin master
-      #  env:
-      #    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Publish to npm
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # publish-npm:
-  #   needs: build
-  #   runs-on: windows-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #           sparse-checkout: .
-  #     - name: Publish to npm
-  #       run: npm publish
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+# publish-npm:
+#   needs: build
+#   runs-on: windows-latest
+#   steps:
+#     - uses: actions/checkout@v4
+#       with:
+#           sparse-checkout: .
+#     - name: Publish to npm
+#       run: npm publish
+#       env:
+#         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+#- name: Set up Git user
+#  run: |
+#    git config --global user.name "piuyixiu"
+#    git config --global user.email "1597167270@qq.com"
+#
+#- name: Bump version (optional)
+#  run: npm version patch --no-git-tag-version # 自动修改版本号
+  
+#- name: Commit & Push changes
+#  uses: actions-js/push@v1.4
+#  with:
+#    github_token: ${{ secrets.GITHUB_TOKEN }}
+#    message: "Bump version"
+#    author_email: '1597167270@qq.com'
+#    author_name: 'piuyixiu'
+#- name: Commit changes # 更新版本号的修改
+#  run: |
+#    git add .
+#    git commit -m "Bump version" || echo "No changes to commit"
+#    git push origin master
+#  env:
+#    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
