@@ -24,6 +24,11 @@ jobs:
       - name: Rollup build
         run: npm run build
 
+      - name: Set up Git user
+        run: |
+          git config --global user.name "piuyixiu"
+          git config --global user.email "1597167270@qq.com"
+
       - name: Bump version (optional)
         run: npm version patch # 自动修改版本号
         
@@ -39,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
             sparse-checkout: .
-            
+
       - name: Publish to npm
         run: npm publish
         env:
