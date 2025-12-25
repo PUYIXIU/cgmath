@@ -27,10 +27,6 @@ jobs:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
           
-      - name: Commit & Push changes
-        uses: actions-js/push@v1.4
-        with:
-          github_token: ${{ secrets.COMMIT_TOKEN }}
 
 
       - name: npm install
@@ -47,11 +43,18 @@ jobs:
       - name: Bump version (optional)
         run: npm version patch --no-git-tag-version # 自动修改版本号
         
-      - name: Commit changes # 更新版本号的修改
-        run: |
-          git add .
-          git commit -m "Bump version" || echo "No changes to commit"
-          git push origin master
+      - name: Commit & Push changes
+        uses: actions-js/push@v1.4
+        with:
+          github_token: ${{ secrets.COMMIT_TOKEN }}
+          message: "Bump version"
+          author_email: '1597167270@qq.com'
+          author_name: 'piuyixiu'
+      # - name: Commit changes # 更新版本号的修改
+      #  run: |
+      #    git add .
+      #    git commit -m "Bump version" || echo "No changes to commit"
+      #    git push origin master
 
       - name: Publish to npm
         run: npm publish --provenance --access public
