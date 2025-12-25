@@ -1,6 +1,6 @@
 {
   "name": "@piuyixiu/cgmath",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "piuyixiu's cg math library",
   "main": "dist/main.cjs",
   "umd:main": "dist/main.umd.js",
