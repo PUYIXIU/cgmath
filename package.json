@@ -1,0 +1,25 @@
+{
+  "name": "@ashihachi/cgmath",
+  "version": "1.0.0",
+  "description": "ashishachi's cg math library",
+  "main": "dist/main.cjs",
+  "umd:main": "dist/main.umd.js",
+  "unpkg": "dist/main.umd.js",
+  "module": "dist/main.mjs",
+  "types": "index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "require": "./dist/main.cjs",
+    "import": "./dist/main.mjs",
+    "default": "./dist/main.umd.js"
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "rollup": "^3.25.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
