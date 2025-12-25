@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Just Publish It
-        run: npm run publish
+        run: npm run pub:local
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
