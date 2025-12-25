@@ -38,8 +38,8 @@ jobs:
           git config --global user.name "piuyixiu"
           git config --global user.email "1597167270@qq.com"
 
-      - name: Bump version (optional)
-        run: npm version patch # 自动修改版本号
+      #- name: Bump version (optional)
+      #  run: npm version patch # 自动修改版本号
         
       - name: Publish to npm
         run: npm publish --provenance --access public
