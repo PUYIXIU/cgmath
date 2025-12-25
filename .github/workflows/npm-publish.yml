@@ -46,8 +46,8 @@ jobs:
           git add .
           git commit -m "Bump version" || echo "No changes to commit"
           git push origin master
-        with:
-          github_token: ${{ secrets.COMMIT_TOKEN }}
+        #with:
+        #  github_token: ${{ secrets.COMMIT_TOKEN }}
 
       - name: Publish to npm
         run: npm publish --provenance --access public
