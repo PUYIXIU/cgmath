@@ -16,7 +16,6 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,6 +55,8 @@ jobs:
           git add .
           git commit -m "Bump version" || echo "No changes to commit"
           git push origin master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm
         run: npm publish --provenance --access public
