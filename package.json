@@ -1,6 +1,6 @@
 {
   "name": "@piuyixiu/cgmath",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "piuyixiu's cg math library",
   "main": "dist/main.cjs",
   "umd:main": "dist/main.umd.js",
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
-    "publish": "npm publish --access public --provenance"
+    "pub:local": "npm publish --access public --provenance"
   },
   "repository": {
     "type": "git",
