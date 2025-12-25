@@ -32,12 +32,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - name: npm install
+        run: npm install
+
+      - name: Rollup build
+        run: npm run build
+
+      - name: Bump version (optional)
+        run: npm version patch # 自动修改版本号
+        
+      - name: Publish to npm
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
