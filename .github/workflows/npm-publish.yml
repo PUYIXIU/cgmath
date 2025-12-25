@@ -46,7 +46,7 @@ jobs:
       - name: Commit & Push changes
         uses: actions-js/push@v1.4
         with:
-          github_token: ${{ secrets.COMMIT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           message: "Bump version"
           author_email: '1597167270@qq.com'
           author_name: 'piuyixiu'
