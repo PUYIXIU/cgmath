@@ -33,7 +33,7 @@ jobs:
       - name: Rollup build
         run: npm run build
 
-      - name: Publish to npm
+      - name: Just Publish It
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
