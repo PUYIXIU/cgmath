@@ -23,5 +23,33 @@ export class Point extends Shape {
 
         if(args.length === 0) return;
         
+        // ( [Number, Number] )
+        if(args.length === 1 && args[0] instanceof Array && args[0].length === 2){
+            let arr = args[0]
+            if( typeof (arr[0]) === 'number' && typeof (arr[1]) === 'number' ) {
+                this.x = arr[0]
+                this.y = arr[1]
+                return
+            }
+        }
+
+        // ( {x: number, y: number, name: 'point'} )
+        if(args.length === 1 && args[0] instanceof Object && args[0].name === 'point'){
+            let {x, y} = args[0]
+            this.x = x
+            this.y = y
+            return
+        }
+
+        // (number, number)
+        if(args.length === 2){
+            if(typeof args[0] === 'number' && typeof args[1] === 'number') {
+                this.x = args[0]
+                this.y = args[1]
+                return
+            }
+        }
+
+        throw Errors.ILLEGAL_PARAMETERS;
     }
 }

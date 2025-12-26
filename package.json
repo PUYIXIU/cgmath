@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
-    "pub:local": "npm publish --access public --provenance"
+    "pub:local": "npm publish --access public --provenance",
+    "test": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --recursive"
   },
   "repository": {
     "type": "git",
@@ -42,8 +43,18 @@
     "dimensionally extended 9-intersections model"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.22.9",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.18.9",
+    "babel-plugin-istanbul": "^5.1.1",
     "@rollup/plugin-node-resolve": "^15.1.0",
-    "rollup": "^3.25.1"
+    "rollup": "^3.25.1",
+    "cross-env": "^10.1.0",
+    "mocha": "^11.7.2",
+    "chai": "^4.2.0",
+    "nyc": "^15.1.0"
   },
   "author": "PUYIXIU (https://github.com/PUYIXIU) ",
   "license": "ISC",

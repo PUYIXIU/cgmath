@@ -1,3 +1,3 @@
-let abc = 133
+import CGMath from './src/cgmath.js'
 
-export { abc }
+export default CGMath
