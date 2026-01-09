@@ -17,3 +17,9 @@ https://juejin.cn/post/7457070778098892840
 ## 插件
 
 ### 测试插件
+
+- babel-plugin-istanbul 自动插桩
+- cross-env 跨操作系统注入系统变量
+- mocha
+- chai 
+- nyc

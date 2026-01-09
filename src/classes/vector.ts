@@ -1,21 +1,18 @@
-import { Shape } from "../classes/shape.js";
-import CGMath from "../cgmath.js";
+import { Shape, Errors, Matrix, Utils, Point } from "@/index";
 
 export class Vector extends Shape {
-  constructor(...args) {
+  /**
+   * x-coordinate of a vactor
+   * @type {number}
+   */
+  private x: number = 0;
+  /**
+   * y-coordinate of a vector
+   * @type {number}
+   */
+  private y: number = 0;
+  constructor(...args: any[]) {
     super();
-
-    /**
-     * x-coordinate of a vactor
-     * @type {number}
-     */
-    this.x = 0;
-
-    /**
-     * y-coordinate of a vector
-     * @type {number}
-     */
-    this.y = 0;
 
     if (args.length === 0) return;
 
@@ -31,7 +28,8 @@ export class Vector extends Shape {
 
     // (vector:{ x: number, y: number })
     if (
-      (args.length === 1) & (args[0] instanceof Object) &&
+      args.length === 1 &&
+      args[0] instanceof Object &&
       args[0].name === "vector"
     ) {
       let { x, y } = args[0];
@@ -61,6 +59,13 @@ export class Vector extends Shape {
         this.y = a2;
         return;
       }
+
+      if(a1 instanceof Point && a2 instanceof Point) {
+        let ps = a1 as Point
+        let pe = a2 as Point
+        this.x = pe.x - ps.x
+        this.y = pe.y - ps.y
+      }
     }
 
     throw Errors.ILLEGAL_PARAMETERS;
@@ -70,15 +75,15 @@ export class Vector extends Shape {
    * 克隆向量
    * @returns {Vector}
    */
-  clone() {
-    return new CGMath.Vector(this.x, this.y);
+  clone(): Vector {
+    return new Vector(this.x, this.y);
   }
 
   /**
    * 返回向量斜率（即与x轴的夹角）（0~2π）
    * @returns {number} 弧度制
    */
-  get slope() {
+  get slope(): number {
     let angle = Math.atan2(this.y, this.x);
     if (angle < 0) angle += Math.PI * 2;
     return angle;
@@ -87,7 +92,7 @@ export class Vector extends Shape {
    * 向量长度
    * @returns {number}
    */
-  get length() {
+  get length(): number {
     return Math.sqrt(this.dot(this));
   }
 
@@ -95,8 +100,8 @@ export class Vector extends Shape {
    * 判断向量是否为零向量
    * @returns {boolean}
    */
-  isZeroLength() {
-    return CGMath.Utils.EQ_0(this.length);
+  isZeroLength(): boolean {
+    return Utils.EQ_0(this.length);
   }
 
   /**
@@ -104,8 +109,8 @@ export class Vector extends Shape {
    * @param {Vector} v
    * @returns {boolean}
    */
-  equalTo(v) {
-    return CGMath.Utils.EQ(this.x, v.x) && CGMath.Utils.EQ(this.y, v.y);
+  equalTo(v: Vector): boolean {
+    return Utils.EQ(this.x, v.x) && Utils.EQ(this.y, v.y);
   }
 
   /**
@@ -113,8 +118,8 @@ export class Vector extends Shape {
    * @param {number} scalar
    * @returns {Vector}
    */
-  multiply(scalar) {
-    return new CGMath.Vector(this.x * scalar, this.y * scalar);
+  multiply(scalar: number): Vector {
+    return new Vector(this.x * scalar, this.y * scalar);
   }
 
   /**
@@ -122,9 +127,9 @@ export class Vector extends Shape {
    * 如果向量长度为0，则抛出错误
    * @returns {Vector}
    */
-  normalize() {
+  normalize(): Vector {
     if (this.isZeroLength()) throw Errors.ZERO_DIVISION;
-    return new CGMath.Vector(this.x / this.length, this.y / this.length);
+    return new Vector(this.x / this.length, this.y / this.length);
   }
 
   /**
@@ -132,8 +137,8 @@ export class Vector extends Shape {
    * @param {Matrix} m
    * @returns {Vector}
    */
-  transform(m) {
-    return new CGMath.Vector(m.transform([this.x, this.y]));
+  transform(m: Matrix): Vector {
+    return new Vector(m.transform([this.x, this.y]));
   }
 
   /**
@@ -141,7 +146,7 @@ export class Vector extends Shape {
    * @param {Vector} v
    * @returns {number}
    */
-  dot(v) {
+  dot(v: Vector): number {
     return this.x * v.x + this.y * v.y;
   }
 
@@ -150,7 +155,7 @@ export class Vector extends Shape {
    * @param {Vector} v
    * @returns {number}
    */
-  cross(v) {
+  cross(v: Vector): number {
     return this.x * v.y - this.y * v.x;
   }
 
@@ -159,11 +164,23 @@ export class Vector extends Shape {
    * @param {Vector} v
    * @returns {number} 弧度制
    */
-  angleTo(v) {
+  angleTo(v: Vector): number {
     let norm1 = this.normalize();
     let norm2 = v.normalize();
-    let angle = Math.atan2(norm1.cross(norm2), norm1.dot(norm2))
-    if(angle < 0) angle += 2 * Math.PI;
+    let angle = Math.atan2(norm1.cross(norm2), norm1.dot(norm2));
+    if (angle < 0) angle += 2 * Math.PI;
     return angle;
+  }
+
+  /**
+   * 获取v在当前向量上的投影长度
+   * 利用向量点乘
+   * @param v 
+   */
+  getProjectionLength(v: Vector): number {
+    let curLen = this.length
+    if(Utils.EQ_0(curLen)) return 0
+    const dotProduct = this.dot(v)
+    return dotProduct / curLen
   }
 }

@@ -81,3 +81,16 @@ export function LT(x, y){
 export function LE(x, y){
     return (x - y < DP_TOL)
 }
+
+/**
+ * 验证数字是否有效
+ * 验证规则： 
+ * - 类型为number
+ * - 不是NaN
+ * - 不是Infinity
+ * @param iValue 要验证的值
+ * @returns {boolean} 是否有效
+ */
+export function isValidNumber(iValue: any): boolean {
+    return typeof iValue === 'number' && !isNaN(iValue) && isFinite(iValue)
+}

@@ -9,14 +9,16 @@
   "types": "index.d.ts",
   "exports": {
     "types": "./index.d.ts",
-    "require": "./dist/main.cjs",
-    "import": "./dist/main.mjs",
-    "default": "./dist/main.umd.js"
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.mjs",
+    "default": "./dist/index.umd.js"
   },
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "vite build --mode prod",
     "pub:local": "npm publish --access public --provenance",
-    "test": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --recursive"
+    "test": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --recursive",
+    "test:report": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha --recursive --exit",
+    "analyze": "cross-env VITE_ANALYZE=true npm run build"
   },
   "repository": {
     "type": "git",
@@ -48,13 +50,19 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.18.9",
-    "babel-plugin-istanbul": "^5.1.1",
     "@rollup/plugin-node-resolve": "^15.1.0",
-    "rollup": "^3.25.1",
+    "babel-plugin-istanbul": "^5.1.1",
+    "chai": "^4.2.0",
     "cross-env": "^10.1.0",
     "mocha": "^11.7.2",
-    "chai": "^4.2.0",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "typescript": "^5.9.3",
+    "vite-plugin-dts": "^3.7.3",
+    "vite": "^4.3.5",
+    "@types/node": "^16.18.101",
+    "rollup-plugin-visualizer": "^6.0.5",
+    "terser": "^5.16.1",
+    "vite-plugin-compression": "^0.5.1"
   },
   "author": "PUYIXIU (https://github.com/PUYIXIU) ",
   "license": "ISC",

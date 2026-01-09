@@ -1,4 +1,4 @@
-export class Errors {
+class Errors {
   /** 非法变量 */
   static get ILLEGAL_PARAMETERS() {
     return new ReferenceError("Illegal Parameters");
@@ -13,3 +13,5 @@ export class Errors {
     return new Error("Operation is not supported");
   }
 }
+
+export { Errors };

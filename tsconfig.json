@@ -1,0 +1,19 @@
+{
+    "include": ["src/**/*.ts"],
+    "exclude": [],
+    "compilerOptions": {
+        "outDir": "./dist/types",
+        "declaration": true,
+        "incremental": true, // 增量编译
+        "composite": true, // 项目引用模式
+        "tsBuildInfoFile": "./cache/build-info.json",
+        "target": "ES6",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+          "@/*": ["src/*"],
+          "dist/*": ["dist/*"]
+        }
+    }
+}

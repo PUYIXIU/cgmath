@@ -1,2 +1,7 @@
 node_modules
 dist/
+test/coverage/
+test/nyc_output/
+cache/
+coverage/
+.nyc_output/
