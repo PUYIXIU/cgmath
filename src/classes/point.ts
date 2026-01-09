@@ -4,6 +4,7 @@
 import { Shape } from "@/classes/shape";
 import { Errors } from "@/utils/errors";
 import { isValidNumber } from "@/utils/utils";
+import { Utils } from "..";
 
 /**
  * point类 - 表示二维平面上的一个点
@@ -108,6 +109,14 @@ export class Point extends Shape {
   }
 
   /**
+   * 获取点的顶点列表
+   * @returns {Point[]} 点的顶点列表
+   */
+  get vertices(): Point[] {
+    return [this.clone()]
+  }
+
+  /**
    * 克隆点
    * @returns {Point} 新的Point实例 
    */
@@ -115,5 +124,23 @@ export class Point extends Shape {
     return new Point(this.x, this.y)
   }
 
-  
+  /**
+   * 判断点是否相等
+   * @param {Point} iPoint 要判断的点
+   * @returns {boolean} 是否相等
+   */
+  equalTo(iPoint: Point): boolean {
+    return Utils.EQ(this.x, iPoint.x) && Utils.EQ(this.y, iPoint.y)
+  }
+
+  toString(): string {
+    return `Point(${this.x}, ${this.y})`
+  }
+
+  toJson(): object {
+    return {
+        x: this.x,
+        y: this.y
+    }
+  }
 }
